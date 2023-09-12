@@ -11,10 +11,29 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, noteToEdit }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  useEffect(() => {});
+  useEffect(() => {
+    if(noteToEdit) {
+      setTitle(noteToEdit?.title ?? '')
+      setContent(noteToEdit.content)
+    }
+
+  }, [noteToEdit]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    let noteId = ( Math.floor(Math.random() * 1000) ) + 1000;
+
+    onSubmit({ id: noteId, title, content })
   };
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value)
+  }
+
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value)
+  }
 
   return (
     <div className="layout-column align-items-center justify-content-start" data-testid="note-manager">
@@ -28,7 +47,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, noteToEdit }) => {
               value={title}
               data-testid="form-input"
               className="form-input"
-              onChange={() => { }}
+              onChange={handleTitleChange}
             />
           </section>
           <section className="layout-row align-items-center justify-content-center mt-20 mr-20 ml-20">
@@ -38,7 +57,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, noteToEdit }) => {
               value={content}
               data-testid="form-textarea"
               className="form-textarea"
-              onChange={() => { }}
+              onChange={handleContentChange}
             />
           </section>
           <section className="layout-row align-items-center justify-content-center mt-20 mr-20 ml-20">

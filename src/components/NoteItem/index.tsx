@@ -9,11 +9,11 @@ export interface NoteItemProps {
 
 const NoteItem: React.FC<NoteItemProps> = ({ note, onDelete, onEdit }) => {
   return (
-    <tr key={0}>
-      <td>Note Title</td>
-      <td>Note Content</td>
-      <td><button className="outlined" onClick={() => {}}>Edit</button></td>
-      <td><button className="danger" onClick={() => {}}>Delete</button></td>
+    <tr key={note.id}>
+      <td>{note.title}</td>
+      <td>{note.content}</td>
+      <td><button className="outlined" onClick={() => onEdit(note)}>Edit</button></td>
+      <td><button className="danger" onClick={() => onDelete(note.id)}>Delete</button></td>
     </tr>
   );
 };
