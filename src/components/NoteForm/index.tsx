@@ -23,8 +23,14 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, noteToEdit }) => {
     e.preventDefault();
 
     let noteId = ( Math.floor(Math.random() * 1000) ) + 1000;
+    
+    if(noteToEdit) {
+      onSubmit({ id: noteToEdit?.id, title, content })
+    }
+    else {
+      onSubmit({ id: noteId, title, content })
+    }
 
-    onSubmit({ id: noteId, title, content })
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

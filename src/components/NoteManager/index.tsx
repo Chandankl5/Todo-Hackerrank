@@ -9,11 +9,9 @@ const NoteManager: React.FC = () => {
 
   const onSubmit = useCallback((note: Note) => {
     let updatedNotes = notes.map((curNote) => {
-      console.log(note.id, curNote.id)
-
       return curNote.id === note.id ? note : curNote
     })
-    console.log("🚀 ~ file: index.tsx:13 ~ onSubmit ~ noteToEdit:", noteToEdit, note)
+
     if(noteToEdit) {
       setNotes(updatedNotes);
     }
