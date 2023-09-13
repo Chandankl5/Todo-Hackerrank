@@ -31,6 +31,9 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, noteToEdit }) => {
       onSubmit({ id: noteId, title, content })
     }
 
+    setTitle('');
+    setContent('')
+
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
